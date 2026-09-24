@@ -5,3 +5,11 @@
 /workspaces/Tarefa-3/ex1-biblioteca-v7a-JDBC/src/main/java/com/bcopstein/ex1biblioeca/Livro.java
 /workspaces/Tarefa-3/ex1-biblioteca-v7a-JDBC/src/main/java/com/bcopstein/ex1biblioeca/LivroRepository.java
 /workspaces/Tarefa-3/ex1-biblioteca-v7a-JDBC/src/main/java/com/bcopstein/ex1biblioeca/LivrosRepository.java
+/workspaces/Tarefa-3/ex1-biblioteca-v7a-JDBC/src/main/java/com/bcopstein/ex1biblioeca/Usuario.java
+/workspaces/Tarefa-3/ex1-biblioteca-v7a-JDBC/src/main/java/com/bcopstein/ex1biblioeca/UsuarioController.java
+/workspaces/Tarefa-3/ex1-biblioteca-v7a-JDBC/src/main/java/com/bcopstein/ex1biblioeca/UsuarioRepository.java
+/workspaces/Tarefa-3/ex1-biblioteca-v7a-JDBC/src/main/java/com/bcopstein/ex1biblioeca/UsuarioService.java
+/workspaces/Tarefa-3/ex1-biblioteca-v7a-JDBC/src/main/java/com/bcopstein/ex1biblioeca/dto/CriarLivroDTO.java
+/workspaces/Tarefa-3/ex1-biblioteca-v7a-JDBC/src/main/java/com/bcopstein/ex1biblioeca/dto/CriarUsuarioDTO.java
+/workspaces/Tarefa-3/ex1-biblioteca-v7a-JDBC/src/main/java/com/bcopstein/ex1biblioeca/dto/LivroDTO.java
+/workspaces/Tarefa-3/ex1-biblioteca-v7a-JDBC/src/main/java/com/bcopstein/ex1biblioeca/dto/UsuarioDTO.java

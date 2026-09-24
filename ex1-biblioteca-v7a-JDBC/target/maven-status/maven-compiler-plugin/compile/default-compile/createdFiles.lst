@@ -1,8 +1,16 @@
 com/bcopstein/ex1biblioeca/LivrosRepository$1.class
+com/bcopstein/ex1biblioeca/dto/LivroDTO.class
 com/bcopstein/ex1biblioeca/LivrosRepository.class
 com/bcopstein/ex1biblioeca/Acervo.class
 com/bcopstein/ex1biblioeca/LivroRepository.class
+com/bcopstein/ex1biblioeca/UsuarioService.class
 com/bcopstein/ex1biblioeca/Livro.class
+com/bcopstein/ex1biblioeca/Usuario.class
+com/bcopstein/ex1biblioeca/dto/UsuarioDTO.class
+com/bcopstein/ex1biblioeca/dto/CriarLivroDTO.class
+com/bcopstein/ex1biblioeca/dto/CriarUsuarioDTO.class
+com/bcopstein/ex1biblioeca/UsuarioRepository.class
+com/bcopstein/ex1biblioeca/UsuarioController.class
 com/bcopstein/ex1biblioeca/Ex1BiblioecaApplication.class
 com/bcopstein/ex1biblioeca/EstatisticasAutor.class
 com/bcopstein/ex1biblioeca/Controller.class

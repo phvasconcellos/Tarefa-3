@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 
+import com.bcopstein.ex1biblioeca.dto.CriarLivroDTO;
+import com.bcopstein.ex1biblioeca.dto.LivroDTO;
+
+import jakarta.validation.Valid;
+
 @RestController
 public class Controller {
     private final Acervo livros;
@@ -32,8 +37,8 @@ public class Controller {
 
     @GetMapping("livros")
     @CrossOrigin(origins = "*")
-    public List<Livro> getListaLivros() {
-        return livros.getAll();
+    public List<LivroDTO> getListaLivros() {
+        return livros.getAll().stream().map(this::converterLivro).toList();
     }
 
     @GetMapping("autores")
@@ -44,9 +49,9 @@ public class Controller {
 
     @GetMapping("livrosautor")
     @CrossOrigin(origins = "*")
-    public List<Livro> getLivrosDoAutor(@RequestParam(value = "autor") String autor) {
+    public List<LivroDTO> getLivrosDoAutor(@RequestParam(value = "autor") String autor) {
         estatisticas.informaConsultaAutor(autor.trim());
-        return livros.getLivrosDoAutor(autor.trim());
+        return livros.getLivrosDoAutor(autor.trim()).stream().map(this::converterLivro).toList();
     }
 
     @GetMapping("autorMaisConsultado")
@@ -63,17 +68,26 @@ public class Controller {
 
     @GetMapping("/livrosautor/{autor}/ano/{ano}")
     @CrossOrigin(origins = "*")
-    public List<Livro> getLivrosDoAutor(@PathVariable(value="autor") String autor, @PathVariable(value="ano")int ano) {
+    public List<LivroDTO> getLivrosDoAutor(@PathVariable(value="autor") String autor, @PathVariable(value="ano")int ano) {
         estatisticas.informaConsultaAutor(autor.trim());
         return livros.getLivrosDoAutor(autor.trim())
                 .stream()
-                .filter(l->l.getAno() == ano)
+                .filter(livro -> livro.getAno() == ano)
+                .map(this::converterLivro)
                 .toList();
     }
 
     @PostMapping("/novolivro")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<Void> cadastraLivroNovo(@RequestBody final Livro livro) {
+    public ResponseEntity<Void> cadastraLivroNovo(@Valid @RequestBody CriarLivroDTO dto) {
+
+        Livro livro = new Livro(
+            dto.id(),
+            dto.titulo(),
+            dto.autor(),
+            dto.ano()
+        );
+
         livros.cadastraLivroNovo(livro);
 
         URI location = URI.create("/livros/" + livro.getId());
@@ -91,5 +105,14 @@ public class Controller {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    private LivroDTO converterLivro(Livro livro) {
+        return new LivroDTO(
+            livro.getId(),
+            livro.getTitulo(),
+            livro.getAutor(),
+            livro.getAno()
+        );
     }
 }
