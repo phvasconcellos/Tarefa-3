@@ -1,6 +1,7 @@
 package com.bcopstein.ex1biblioeca;
 
 import java.util.List;
+import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 public class Controller {
@@ -71,13 +73,23 @@ public class Controller {
 
     @PostMapping("/novolivro")
     @CrossOrigin(origins = "*")
-    public boolean cadastraLivroNovo(@RequestBody final Livro livro) {
-        return livros.cadastraLivroNovo(livro);
+    public ResponseEntity<Void> cadastraLivroNovo(@RequestBody final Livro livro) {
+        livros.cadastraLivroNovo(livro);
+
+        URI location = URI.create("/livros/" + livro.getId());
+
+        return ResponseEntity.created(location).build();
     }
 
     @PostMapping("/removelivro/{codigo}")
     @CrossOrigin(origins = "*")
-    public boolean removeLivro(@PathVariable(value="codigo") long codigo) {
-        return livros.removeLivro(codigo);
+    public ResponseEntity<Void> removeLivro(
+        @PathVariable(value = "codigo") long codigo) {
+
+        if (livros.removeLivro(codigo)) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
     }
 }

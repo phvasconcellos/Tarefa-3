@@ -1,7 +1,14 @@
 package com.bcopstein.ex1biblioeca;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Livro {
+    
+    @Id
     private long id;
+
     private String titulo;
     private String autor;
     private int ano;

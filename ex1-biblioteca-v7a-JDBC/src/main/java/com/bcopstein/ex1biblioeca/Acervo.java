@@ -9,10 +9,10 @@ import jakarta.annotation.PostConstruct;
 
 @Repository
 public class Acervo {
-    private final LivrosRepository livroRepository;
+    private final LivroRepository livroRepository;
 
     @Autowired
-    public Acervo(LivrosRepository livroRepository) {
+    public Acervo(LivroRepository livroRepository) {
         this.livroRepository = livroRepository;
     }
 
@@ -47,11 +47,11 @@ public class Acervo {
     }
 
     public List<Livro> getLivrosDoAutor(String autor) {
-        return livroRepository.findByAutor(autor);
+        return livroRepository.findAll().stream().filter(livro -> livro.getAutor().equals(autor)).toList();
     }
 
     public Livro getLivroTitulo(String titulo) {
-        return livroRepository.findByTitulo(titulo);
+        return livroRepository.findAll().stream().filter(livro -> livro.getTitulo().equals(titulo)).findFirst().orElse(null);
     }
 
     public boolean cadastraLivroNovo(Livro livro) {
